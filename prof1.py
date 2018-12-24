@@ -97,13 +97,9 @@ profiler.profile_python(profile_code_opt_builder.build())
 
 
 profile_op_opt_builder = option_builder.ProfileOptionBuilder()
-#显示字段：op执行时间，使用该op的node的数量。 注意：op的执行时间即所有使用该op的node的执行时间总和。
 profile_op_opt_builder.select(['micros','occurrence'])
-#根据op执行时间进行显示结果排序
 profile_op_opt_builder.order_by('micros')
-#过滤条件：只显示排名top 5
 profile_op_opt_builder.with_max_depth(4)
-#显示视图为op view
 profiler.profile_operations(profile_op_opt_builder.build())
 
 profiler.advise(options=model_analyzer.ALL_ADVICE)
